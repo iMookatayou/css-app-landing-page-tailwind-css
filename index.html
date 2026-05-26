@@ -5,9 +5,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Acme App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <!-- Start Coding Here -->
-  </body>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            'acme-bg': '#f0eef8',
+            'acme-purple': '#6c47ff',
+            'acme-dark': '#1a1333',
+            'acme-nav-active': '#6c47ff',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease forwards',
+            'fade-up-delay': 'fadeUp 0.7s ease 0.15s forwards',
+            'fade-up-delay2': 'fadeUp 0.7s ease 0.3s forwards',
+            'fade-up-delay3': 'fadeUp 0.7s ease 0.45s forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(18px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #f0eef8; }
+    .opacity-0-init { opacity: 0; }
+  </style>
+</head>
+<body class="font-sans min-h-screen" style="background-color:#f0eef8;">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-8 py-5 max-w-5xl mx-auto bg-white rounded-full ">
+    <!-- Logo -->
+    <div class="flex items-center gap-1">
+      <span class="text-acme-dark font-extrabold text-xl tracking-tight">Acme</span>
+      <span class="text-acme-purple font-extrabold text-xl">*</span>
+    </div>
+
+    <!-- Nav Links -->
+    <ul class="flex items-center gap-8 text-sm font-semibold">
+      <li>
+        <a href="#" class="text-acme-purple underline underline-offset-4 decoration-acme-purple/60">Home</a>
+      </li>
+      <li>
+        <a href="#" class="text-acme-dark/70 hover:text-acme-dark transition-colors">Features</a>
+      </li>
+      <li>
+        <a href="#" class="text-acme-dark/70 hover:text-acme-dark transition-colors">Pricing</a>
+      </li>
+      <li>
+        <a href="#" class="text-acme-dark/70 hover:text-acme-dark transition-colors">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col items-center justify-center text-center px-6 pt-20 pb-32 max-w-3xl mx-auto">
+
+    <!-- Badge -->
+    <div
+      class="opacity-0-init animate-fade-up inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-white/80 rounded-full px-4 py-1.5 mb-8 shadow-sm"
+    >
+      <span class="text-base">🌈</span>
+      <span class="text-sm font-semibold text-acme-dark/80 tracking-tight">Acme Productivity App</span>
+    </div>
+
+    <!-- Headline -->
+    <h1
+      class="opacity-0-init animate-fade-up-delay text-5xl sm:text-6xl font-extrabold text-acme-dark leading-[1.1] tracking-tight mb-5"
+    >
+      Boost Your <span class="text-acme-purple">Product</span>ivity
+    </h1>
+
+    <!-- Subheadline -->
+    <p
+      class="opacity-0-init animate-fade-up-delay2 text-base sm:text-lg font-semibold text-acme-dark/60 mb-10 max-w-md"
+    >
+      Streamline your workflow with our all-in-one productivity app.
+    </p>
+
+    <!-- CTA Button -->
+    <a
+      href="#"
+      class="opacity-0-init animate-fade-up-delay3 inline-block bg-acme-dark text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-lg hover:bg-acme-dark/85 hover:scale-105 active:scale-95 transition-all duration-200"
+    >
+      Start Free Trial
+    </a>
+
+  </section>
+
+</body>
 </html>
