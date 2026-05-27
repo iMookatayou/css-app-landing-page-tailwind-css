@@ -1,1 +1,409 @@
-<!-- start coding here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse by Job Categories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:      #f06b2a;
+      --orange-light:#fff1ea;
+      --orange-pale: #fde3d2;
+      --navy:        #1a2e4a;
+      --gray-text:   #8a94a6;
+      --border:      #e8ecf0;
+      --white:       #ffffff;
+      --bg:          #ffffff;
+      --card-hover:  #f7f8fa;
+    }
+
+    body {
+      font-family: 'Epilogue', sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    /* ── Section heading ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+
+    .section-header h2 mark {
+      background: none;
+      color: var(--orange);
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Underline squiggle under "Job" */
+    .section-header h2 mark::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      bottom: -4px;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    /* ── Grid ── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1160px;
+      width: 100%;
+      list-style: none;
+    }
+
+    .categories-grid li {
+      list-style: none;
+    }
+
+    /* ── Category card ── */
+    .category-card {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: pointer;
+      transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+      text-decoration: none;
+      color: inherit;
+      background: var(--white);
+      opacity: 0;
+      animation: fadeUp 0.45s ease forwards;
+    }
+
+    .category-card:nth-child(1) { animation-delay: 0.04s; }
+    .category-card:nth-child(2) { animation-delay: 0.10s; }
+    .category-card:nth-child(3) { animation-delay: 0.16s; }
+    .category-card:nth-child(4) { animation-delay: 0.22s; }
+    .category-card:nth-child(5) { animation-delay: 0.28s; }
+    .category-card:nth-child(6) { animation-delay: 0.34s; }
+    .category-card:nth-child(7) { animation-delay: 0.40s; }
+
+    .category-card:hover {
+      background: var(--card-hover);
+      border-color: #d0d8e4;
+      box-shadow: 0 6px 28px rgba(26, 46, 74, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Icon circle */
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--orange-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 52px;
+      transition: background 0.22s ease;
+      flex-shrink: 0;
+    }
+
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--orange);
+    }
+
+    /* Filled icon on hover */
+    .category-card:hover .card-icon {
+      background: var(--orange);
+    }
+
+    .category-card:hover .card-icon svg {
+      fill: white;
+    }
+
+    /* Card footer: title + count + arrow */
+    .card-footer {
+      border-top: 1.5px solid var(--border);
+      padding-top: 16px;
+      margin-top: auto;
+    }
+
+    .card-footer h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .card-footer p {
+      font-size: 0.82rem;
+      color: var(--gray-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .arrow {
+      color: var(--navy);
+      font-size: 1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .category-card:hover .arrow {
+      transform: translateX(4px);
+      color: var(--orange);
+    }
+
+    /* ── "Explore more" CTA card ── */
+    .explore-card {
+      border-radius: 8px;
+      background: var(--orange);
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.46s ease forwards;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .explore-card:hover { opacity: 0.92; transform: translateY(-3px); }
+
+    /* decorative circles */
+    .explore-card::before,
+    .explore-card::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.18);
+    }
+    .explore-card::before { width: 130px; height: 130px; top: -40px; right: -30px; }
+    .explore-card::after  { width: 90px;  height: 90px;  bottom: -25px; left: -20px; }
+
+    .explore-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 1;
+    }
+
+    .explore-inner p {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+    }
+
+    .explore-inner .arrow {
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .explore-card:hover .arrow { transform: translateX(4px); color: white; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .categories-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================
+       PAGE SECTION
+  ============================== -->
+  <section aria-labelledby="categories-heading">
+
+    <!-- Heading -->
+    <header class="section-header">
+      <h2 id="categories-heading">
+        Browse by<br>
+        <mark>Job</mark> Categories
+      </h2>
+    </header>
+
+    <!-- Categories grid -->
+    <ul class="categories-grid" role="list">
+
+      <!-- Digital Marketing -->
+      <li>
+        <a href="#" class="category-card" aria-label="Digital Marketing — 143 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- megaphone -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 11v2l3 1v-4L3 11zm14-7L7 9H4a1 1 0 00-1 1v4a1 1 0 001 1h3l10 5V4zM21 12a9 9 0 00-1.5-5l-1.1 1.1A7 7 0 0119.5 12a7 7 0 01-1.1 3.9L19.5 17A9 9 0 0021 12zm-4 0a5 5 0 00-.8-2.7l-1.1 1.1A3 3 0 0116 12a3 3 0 01-.9 2.6l1.1 1.1A5 5 0 0017 12z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Digital Marketing</h3>
+            <p>
+              <span>143 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Art & Design -->
+      <li>
+        <a href="#" class="category-card" aria-label="Art and Design — 110 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- pen tool -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 19l7-7-4-4-7 7v4h4zm9-15l-2-2-2 2 2 2 2-2zM3 21h18v-1H3v1z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Art &amp; Design</h3>
+            <p>
+              <span>110 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Accounting (highlighted) -->
+      <li>
+        <a href="#" class="category-card" aria-label="Accounting — 158 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- dollar sign -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1H8.1c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.68-4.4z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Accounting</h3>
+            <p>
+              <span>158 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Photography -->
+      <li>
+        <a href="#" class="category-card" aria-label="Photography — 95 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- camera -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 3L7.17 5H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2h-3.17L15 3H9zm3 15a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Photography</h3>
+            <p>
+              <span>95 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Copy Writing -->
+      <li>
+        <a href="#" class="category-card" aria-label="Copy Writing — 113 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- edit/write -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Copy Writing</h3>
+            <p>
+              <span>113 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Music -->
+      <li>
+        <a href="#" class="category-card" aria-label="Music — 55 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- headphones -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3a9 9 0 00-9 9v7a2 2 0 002 2h2a2 2 0 002-2v-3a2 2 0 00-2-2H5v-2a7 7 0 1114 0v2h-2a2 2 0 00-2 2v3a2 2 0 002 2h2a2 2 0 002-2v-7a9 9 0 00-9-9z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Music</h3>
+            <p>
+              <span>55 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Human Resources -->
+      <li>
+        <a href="#" class="category-card" aria-label="Human Resources — 25 jobs opened">
+          <figure class="card-icon" aria-hidden="true">
+            <!-- people -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </figure>
+          <div class="card-footer">
+            <h3>Human Resouces</h3>
+            <p>
+              <span>25 Jobs Opened</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <!-- Explore More CTA -->
+      <li>
+        <a href="#" class="explore-card" aria-label="Explore 30 more categories">
+          <div class="explore-inner">
+            <p>Explore<br>30 More<br>Categories</p>
+            <span class="arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+</body>
+</html>
