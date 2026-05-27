@@ -1,1 +1,160 @@
-<!-- start coding here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['DM Sans', 'sans-serif'],
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              'job-orange': '#FF9A56', 
+              'job-dark': '#1A2B52',
+              'job-light-bg': '#F5F5F5',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      body { background-color: #FAFAFA; }
+    </style>
+</head>
+<body class="font-sans">
+    <section class="py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <!-- <p class="text-sm font-semibold text-gray-600 mb-2">Browse by</p> -->
+          <h2 class="text-4xl sm:text-5xl font-bold font-poppins text-[#183B56]">
+            Browse by <br /> Job Categories
+          </h2>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 px-6">
+          
+          <!-- Card 1-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center bg-[#FFF3ED]">
+              <img src="public/icon/megaphone.svg" alt="Digital Marketing" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Digital Marketing</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">143 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div> 
+
+          <!-- Card 2-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FFE8D9;">
+              <img src="public/icon/pen.svg" alt="Art & Design" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Art & Design</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">110 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FF9A56;">
+              <img src="public/icon/dollar.svg" alt="Accounting" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Accounting</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">158 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FFE8D9;">
+              <img src="public/icon/camera.svg" alt="Photography" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Photography</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">95 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5:-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FFE8D9;">
+              <img src="public/icon/note.svg" alt="Copy Writing" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Copy Writing</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">113 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6:-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FFE8D9;">
+              <img src="public/icon/headset.svg" alt="Music" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Music</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">55 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7-->
+          <div class="bg-white rounded-xl p-5 flex flex-col gap-6 border-gray-200 border min-h-[250px]">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #FFE8D9;">
+              <img src="public/icon/human.svg" alt="Human Resources" class="w-8 h-8">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold font-poppins text-[#183B56]">Human Resources</h3>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-gray-500 text-sm">25 Jobs Opened</p>
+                <img src="public/icon/Button.svg" alt="arrow" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8-->
+          <div class="rounded-2xl p-10 flex items-center justify-between shadow-sm bg-[#FF8345] min-h-[250px]">
+          
+            <h3 class="text-white font-poppins font-semibold text-xl leading-tight">
+              Explore <br />
+              30 More <br />
+              Categories
+            </h3>
+          
+            <div class="text-white text-4xl mr-4 transition-transform duration-300 hover:translate-x-2">
+              <span>→</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+</body>
+</html>
